@@ -1,8 +1,8 @@
-# CivicConnect - Civic Complaint Reporting System
+# FixMyCity - Civic Complaint Reporting System
 
 ## Project Overview
 
-CivicConnect is a simple full-stack web application that allows citizens to report civic problems like potholes, broken streetlights, garbage issues, and other community concerns. Government officials can then view these complaints and update their status.
+FixMyCity is a simple full-stack web application that allows citizens to report civic problems like potholes, broken streetlights, garbage issues, and other community concerns. Government officials can then view these complaints and update their status.
 
 This is a college-level project built with basic web technologies, focusing on functionality over fancy design.
 
@@ -53,7 +53,7 @@ This is a college-level project built with basic web technologies, focusing on f
 
 3. **Make sure MongoDB is running**
    - Start MongoDB service on your system
-   - Default connection: \`mongodb://localhost:27017/civicconnect\`
+   - Default connection: \`mongodb://localhost:27017/FixMyCity\`
 
 4. **Seed the database with sample data**
    \`\`\`bash
@@ -88,7 +88,7 @@ This is a college-level project built with basic web technologies, focusing on f
 ## Project Structure
 
 \`\`\`
-civicconnect/
+FixMyCity/
 ├── server.js              # Main server file
 ├── seed.js                # Database seeding script
 ├── package.json           # Project dependencies
@@ -157,6 +157,6 @@ civicconnect/
 
 ---
 
-**Created by:** Student  
+**Created by:Tejaswaroop 
 **Course:** Web Development  
-**Year:** 2024
+**Year:** 2025
