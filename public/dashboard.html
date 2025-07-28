@@ -18,7 +18,7 @@
         </header>
 
         <main>
-            <!-- Submit New Complaint Form -->
+            
             <div class="form-container">
                 <h2>Submit New Complaint</h2>
                 <form id="complaintForm" enctype="multipart/form-data">
@@ -48,7 +48,7 @@
                 <div id="submitMessage"></div>
             </div>
 
-            <!-- User's Complaints -->
+          
             <div style="margin-top: 40px;">
                 <h2>My Complaints</h2>
                 <div id="complaintsContainer">
@@ -61,7 +61,7 @@
     <script>
         let currentUser = null;
 
-        // Check if user is logged in
+       
         function checkAuth() {
             const userData = localStorage.getItem('user');
             if (!userData) {
@@ -72,17 +72,17 @@
             currentUser = JSON.parse(userData);
             document.getElementById('welcomeUser').textContent = `Welcome, ${currentUser.username}!`;
             
-            // Load user's complaints
+           
             loadComplaints();
         }
 
-        // Logout function
+       
         function logout() {
             localStorage.removeItem('user');
             window.location.href = 'index.html';
         }
 
-        // Handle complaint form submission
+       
         document.getElementById('complaintForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -110,7 +110,7 @@
                 if (response.ok) {
                     messageDiv.innerHTML = '<p class="success">Complaint submitted successfully!</p>';
                     document.getElementById('complaintForm').reset();
-                    loadComplaints(); // Reload complaints
+                    loadComplaints(); 
                 } else {
                     messageDiv.innerHTML = `<p class="error">${data.error}</p>`;
                 }
@@ -119,7 +119,7 @@
             }
         });
 
-        // Load user's complaints
+       
         async function loadComplaints() {
             try {
                 const response = await fetch(`/api/complaints/user/${currentUser.id}`);
