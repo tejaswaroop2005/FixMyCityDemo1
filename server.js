@@ -1,4 +1,4 @@
-// 1. Load environment variables from .env file
+
 require("dotenv").config()
 
 const express = require("express")
@@ -9,20 +9,19 @@ const path = require("path")
 const fs = require("fs")
 
 const app = express()
-// Use the PORT from .env, or default to 3000
+
 const PORT = process.env.PORT || 3000
 
-// Middleware
 app.use(express.json())
 app.use(express.static("public"))
 app.use("/uploads", express.static("uploads"))
 
-// Create uploads directory if it doesn't exist
+
 if (!fs.existsSync("uploads")) {
   fs.mkdirSync("uploads")
 }
 
-// File upload configuration
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "uploads/")
@@ -33,7 +32,7 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 
-// 2. Use the MONGO_URI from the .env file
+
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -58,7 +57,7 @@ const complaintSchema = new mongoose.Schema({
   description: { type: String, required: true },
   location: { type: String, required: true },
   photo: { type: String }, // file path
-  status: { type: String, default: "pending" }, // pending, in-progress, resolved
+  status: { type: String, default: "pending" }, 
   remark: { type: String },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   createdAt: { type: Date, default: Date.now },
@@ -66,23 +65,23 @@ const complaintSchema = new mongoose.Schema({
 
 const Complaint = mongoose.model("Complaint", complaintSchema)
 
-// --- Routes (No changes needed here) ---
 
-// User registration
+
+
 app.post("/api/register", async (req, res) => {
   try {
     const { username, email, password } = req.body
 
-    // Check if user already exists
+   
     const existingUser = await User.findOne({ $or: [{ email }, { username }] })
     if (existingUser) {
       return res.status(400).json({ error: "User already exists" })
     }
 
-    // Hash password
+  
     const hashedPassword = await bcrypt.hash(password, 10)
 
-    // Create new user
+  
     const user = new User({
       username,
       email,
@@ -96,18 +95,18 @@ app.post("/api/register", async (req, res) => {
   }
 })
 
-// User login
+
 app.post("/api/login", async (req, res) => {
   try {
     const { username, password } = req.body
 
-    // Find user
+  
     const user = await User.findOne({ username })
     if (!user) {
       return res.status(400).json({ error: "Invalid credentials" })
     }
 
-    // Check password
+   
     const isValidPassword = await bcrypt.compare(password, user.password)
     if (!isValidPassword) {
       return res.status(400).json({ error: "Invalid credentials" })
@@ -127,7 +126,7 @@ app.post("/api/login", async (req, res) => {
   }
 })
 
-// Submit complaint
+
 app.post("/api/complaints", upload.single("photo"), async (req, res) => {
   try {
     const { title, description, location, userId } = req.body
@@ -147,7 +146,7 @@ app.post("/api/complaints", upload.single("photo"), async (req, res) => {
   }
 })
 
-// Get user's complaints
+
 app.get("/api/complaints/user/:userId", async (req, res) => {
   try {
     const complaints = await Complaint.find({ userId: req.params.userId }).sort({ createdAt: -1 })
@@ -157,7 +156,7 @@ app.get("/api/complaints/user/:userId", async (req, res) => {
   }
 })
 
-// Get all complaints (admin only)
+
 app.get("/api/complaints", async (req, res) => {
   try {
     const complaints = await Complaint.find().populate("userId", "username email").sort({ createdAt: -1 })
@@ -167,7 +166,7 @@ app.get("/api/complaints", async (req, res) => {
   }
 })
 
-// Update complaint status (admin only)
+
 app.put("/api/complaints/:id", async (req, res) => {
   try {
     const { status, remark } = req.body
@@ -179,9 +178,9 @@ app.put("/api/complaints/:id", async (req, res) => {
   }
 })
 
-// --- End of Routes ---
 
-// Start server
+
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`)
 })
