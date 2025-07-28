@@ -81,8 +81,7 @@ This is a college-level project built with basic web technologies, focusing on f
 
 
 ### Admins
-- **Username:** admin, **Password:** password123
-- **Username:** gov_official, **Password:** password123
+- **Username:** admin_user, **Password:** password123
 
 ## Project Structure
 
