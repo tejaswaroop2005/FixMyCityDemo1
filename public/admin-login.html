@@ -38,7 +38,7 @@
     </div>
 
     <script>
-        // Handle admin login form submission
+        
         document.getElementById('adminLoginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -59,11 +59,11 @@
                 
                 if (response.ok) {
                     if (data.user.isAdmin) {
-                        // Store admin data in localStorage
+                        
                         localStorage.setItem('admin', JSON.stringify(data.user));
                         messageDiv.innerHTML = '<p class="success">Admin login successful! Redirecting...</p>';
                         
-                        // Redirect to admin dashboard
+                        
                         setTimeout(() => {
                             window.location.href = 'admin-dashboard.html';
                         }, 1000);
