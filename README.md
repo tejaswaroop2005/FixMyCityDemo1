@@ -78,8 +78,7 @@ This is a college-level project built with basic web technologies, focusing on f
 ### Citizens
 - **Username:** john_doe, **Password:** password123
 - **Username:** jane_smith, **Password:** password123
-- **Username:** mike_wilson, **Password:** password123
-- **Username:** sarah_jones, **Password:** password123
+
 
 ### Admins
 - **Username:** admin, **Password:** password123
